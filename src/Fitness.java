@@ -71,6 +71,51 @@ public class Fitness {
         
         return 5-count; // indicate that the class is not available on the specified date and shift
     }
+    
+
+    public int checkAvailableSeats(LocalDate date, String shift) {
+        int count = 0;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        for (Booking booking : bookings) {
+        	String id=booking.getClassId();
+        	String shifts="";
+        	for(FitnessClass f:fitnessClasses)
+        	{
+        		if(f.getClassId().equals(id)) {
+        			shifts=f.getShift();
+        			
+        		}
+        	}
+            if (booking.getDate().equals(date) && shifts.equals(shift)) {
+                count++;
+            }
+        }
+        
+        return 5-count; // indicate that the class is not available on the specified date and shift
+    }
+    
+    public void checkFeedbacks(LocalDate date, String shift) {
+        int count = 0;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        for (Booking booking : bookings) {
+        	String id=booking.getClassId();
+        	String shifts="";
+        	for(FitnessClass f:fitnessClasses)
+        	{
+        		if(f.getClassId().equals(id)) {
+        			shifts=f.getShift();
+        			
+        		}
+        	}
+            if (booking.getDate().equals(date) && shifts.equals(shift)) {
+              System.out.println(booking.getFeedback()+"\n");
+            }
+           
+            
+        }
+        
+        // indicate that the class is not available on the specified date and shift
+    }
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

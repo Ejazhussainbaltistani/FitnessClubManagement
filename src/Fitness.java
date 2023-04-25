@@ -457,7 +457,14 @@ public void attendLesson() {
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		 String fitnessType="body composition";
+ 	    FitnessClass[] fitnessClasses = new FitnessClass[4];
+ 	    fitnessClasses[0] = new FitnessClass("F001", "Yoga", "first",DayOfWeek.SUNDAY, 20.0f);
+ 	    fitnessClasses[1] = new FitnessClass("F002", "Pilates", "first", DayOfWeek.SATURDAY, 25.0f);
+ 	    fitnessClasses[2] = new FitnessClass("F003", "Zumba", "second", DayOfWeek.SUNDAY, 15.0f);
+ 	    fitnessClasses[3] = new FitnessClass("F004", "Spinning", "second", DayOfWeek.SATURDAY, 30.0f);
+ 	    Fitness f=new Fitness(fitnessClasses,fitnessType);
+ 	    f.showMenu();
 	}
 
 }

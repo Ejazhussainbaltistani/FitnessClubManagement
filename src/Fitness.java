@@ -178,6 +178,34 @@ public void displayReports(FitnessClass f) {
         
     
     }
+public void displayTimetable() {
+	System.out.print(bookings.size());
+	
+     LocalDate date1 = LocalDate.parse(startDate);
+     LocalDate date2 = LocalDate.parse(endDate);
+     
+     // Define the date format to use when printing the dates
+     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     
+     // Print all dates between the first and second date
+     LocalDate currentDate = date1;
+     System.out.print("\n\nDate			first(shift)		Available	second(shift)		Available\n\n");		
+     System.out.print("------------------------------------------------------------------------------------------------\n\n");		
+    while (currentDate.isBefore(date2)) {
+    	 DayOfWeek day=currentDate.getDayOfWeek();
+    	 FitnessClass f1=getFitnessByShiftAndDay("first",day);
+    	 FitnessClass f2=getFitnessByShiftAndDay("second",day);
+    	 int c1=checkAvailableSeats(currentDate,"first") ;
+    	 int c2=checkAvailableSeats(currentDate,"second") ;
+
+    	 if(day==DayOfWeek.SUNDAY||day==DayOfWeek.SATURDAY ) {
+         System.out.print(currentDate.format(dateFormatter)+"("+day+")"+"	"+f1.getLesson()+"("+f1.getFee()+")		"+c1+"		"+f2.getLesson()+"("+f2.getFee()+")		"+c2+"\n");
+    	 }currentDate = currentDate.plusDays(1);
+    	 
+     }
+     
+ 
+ }
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -345,6 +345,113 @@ public void changeBooking() {
 	System.out.print("Booking is Updated Successfully\n");
 }
 
+public void attendLesson() {
+  	 Scanner scanner = new Scanner(System.in);
+
+       System.out.print("Enter Booking ID: ");
+       String bookingId = scanner.nextLine();
+       int index=getIndex(bookingId);
+       while(index==-1)
+       {
+           System.out.print("ID not found!\n\nEnter Booking ID: ");
+      	  bookingId = scanner.nextLine();
+            index=getIndex(bookingId);
+       }
+        
+  	Booking updatebooking=bookings.get(index);
+  	updatebooking.setFeedback(this.selectFeedback());
+  	bookings.set(index, updatebooking);
+  	System.out.print("Booking is Updated Successfully\n");
+  }
+   
+   public void cancelBooking() {
+  	 Scanner scanner = new Scanner(System.in);
+
+       System.out.print("Enter Booking ID To Cancel : ");
+       String bookingId = scanner.nextLine();
+       int index=getIndex(bookingId);
+       while(index==-1)
+       {
+       	System.out.print("Booking ID  not Found!\nEnter Booking ID To Cancel : ");
+      	  bookingId = scanner.nextLine();
+            index=getIndex(bookingId);
+       }
+ 
+    bookings.remove(index);
+  	System.out.print("Booking is Updated Successfully\n");
+  }
+
+       
+   
+
+
+   public String getFitnessType() {
+       return fitnessType;
+   }
+   public List<Booking> getBookings() {
+       return bookings;
+   }
+
+   public void setBookings(List<Booking> bookings) {
+       this.bookings = bookings;
+   }
+
+   public FitnessClass[] getFitnessClasses() {
+       return fitnessClasses;
+   }
+
+   public void setFitnessClasses(FitnessClass[] fitnessClasses) {
+       this.fitnessClasses = fitnessClasses;
+   }
+   
+   public void showMenu()
+   {
+       int choice;
+       
+       do {
+
+           System.out.println("\n\nFitness Club Management\n\n");
+           System.out.println("1. Cancel Booking");
+           System.out.println("2. Change Booking");
+           System.out.println("3. Book a New Seat");
+           System.out.println("4. Check Time Table");
+           System.out.println("5. Check Lesson Reports");
+           System.out.println("6. Attend Lesson");
+           System.out.println("0. Exit\n\n\n\nPlease choose an option : ");
+       	Scanner scanner = new Scanner(System.in);
+
+           String s=scanner.next();
+           choice = Integer.parseInt(s);
+           
+           switch (choice) {
+               case 1:
+                  this.cancelBooking();
+                   break;
+               case 2:
+                   this.changeBooking();
+                   break;
+               case 3:
+                  this.bookSeat();
+                   break;
+               case 4:
+                   this.displayTimetable();
+                   break;
+               case 5:
+                   this.checkReports();
+                   break;
+               case 6:
+                   this.attendLesson();
+                   break;
+               case 0:
+                   // exit the program
+                   System.out.println("Exiting...");
+                   break;
+               default:
+                   System.out.println("Invalid choice, please try again.\n\n");
+           }
+       } while (choice != 0);
+   }
+   
 
 
     

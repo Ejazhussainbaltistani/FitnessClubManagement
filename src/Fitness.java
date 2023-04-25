@@ -3,6 +3,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Fitness {
@@ -206,6 +207,58 @@ public void displayTimetable() {
      
  
  }
+public String selectFeedback() {
+    System.out.println("Select Feedback");
+    for (int i = 0; i < feedbacks.length; i++) {
+        System.out.println((i+1) + ". " + feedbacks[i]);
+    }
+
+    Scanner scanner = new Scanner(System.in);
+    int choice = -1;
+    while (choice < 1 || choice > feedbacks.length) {
+        System.out.print("Enter the number of the feedback you want to select: ");
+        choice = Integer.parseInt(scanner.nextLine());
+        if (choice < 1 || choice > feedbacks.length) {
+            System.out.println("Invalid choice. Please enter a number between 1 and " + feedbacks.length);
+        }
+    }
+    String f = feedbacks[choice-1];
+    System.out.print("You have selected the " + f + " as feedback.");
+    return feedbacks[choice-1];
+}
+
+
+public FitnessClass selectLesson() {
+    System.out.println("Available lesson types:");
+    for (int i = 0; i < fitnessClasses.length; i++) {
+        System.out.println((i+1) + ". " + fitnessClasses[i].getLesson());
+    }
+
+    Scanner scanner = new Scanner(System.in);
+    int choice = -1;
+    while (choice < 1 || choice > fitnessClasses.length) {
+        System.out.print("Enter the number of the lesson type you want to select: ");
+        choice = Integer.parseInt(scanner.nextLine());
+        if (choice < 1 || choice > fitnessClasses.length) {
+            System.out.println("Invalid choice. Please enter a number between 1 and " + fitnessClasses.length);
+        }
+    }
+
+    String selectedLessonType = fitnessClasses[choice-1].getLesson();
+    System.out.println("You have selected the " + selectedLessonType + " lesson type.");
+    return fitnessClasses[choice-1];
+}
+
+public static String generateBookingId() {
+    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    StringBuilder bookingId = new StringBuilder();
+    Random rnd = new Random();
+    while (bookingId.length() < 10) { // Generate 10-character ID
+        int index = (int) (rnd.nextFloat() * chars.length());
+        bookingId.append(chars.charAt(index));
+    }
+    return bookingId.toString();
+}
     
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
